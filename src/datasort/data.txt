@@ -1,0 +1,3 @@
+apple,monkey
+apple,zebra
+die,banana
