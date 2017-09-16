@@ -5,6 +5,7 @@
  */
 package datasort.data;
 
+import datasort.Configuration;
 import datasort.DataSort;
 import datasort.OrderBy;
 import java.io.BufferedReader;
@@ -31,21 +32,19 @@ public class ElementPair implements Comparable<ElementPair> {
     }
 
     private ElementPair(String e1, String e2) {
-        if (element1 == null || element2 == null) {
-            //throw execption
+        if (e1 == null || e2 == null) {
+            throw new IllegalArgumentException();
         }
 
-        //element1 = e1;
-        // element2 = 2;
-        boolean firstElementInteger = checkIfInteger(e1);
-        boolean secondElementInteger = checkIfInteger(e2);
-        if (firstElementInteger && secondElementInteger) {
-            this.isInteger = true;
+        Configuration config = Configuration.getInstance();
+        if (config.firstElementIsInteger) {
             this.element1 = Integer.parseInt(e1);
+        } else {
+            this.element1 = e1;
+        }
+        if (config.secondElementIsInteger) {
             this.element2 = Integer.parseInt(e2);
         } else {
-            this.isInteger = false;
-            this.element1 = e1;
             this.element2 = e2;
         }
     }
@@ -57,26 +56,20 @@ public class ElementPair implements Comparable<ElementPair> {
         ArrayList<ElementPair> elements = new ArrayList<>();
 
         String line = br.readLine();
+        String[] tok = line.split(DataSort.splitTag);
+        Configuration config = Configuration.getInstance();
+        config.setVariableType(tok[0], tok[1]);
+      
         while (line != null && !line.equals("")) {
-            String[] tok = line.split(DataSort.splitTag);
+            tok = line.split(DataSort.splitTag);
             ElementPair pair = new ElementPair(tok[0], tok[1]);
             elements.add(pair);
             line = br.readLine();
         }
+        
         ElementPair[] res = new ElementPair[elements.size()];
-        for (int i = 0; i < elements.size(); i++) {
-            res[i] = elements.get(i);
-        }
-        return res;
-    }
-
-    private boolean checkIfInteger(String ele1) {
-        for (char c : ele1.toCharArray()) {
-            if (!Character.isDigit(c)) {
-                return false;
-            }
-        }
-        return true;
+    
+        return elements.toArray(res);
     }
 
     public String toString() {
@@ -103,35 +96,27 @@ public class ElementPair implements Comparable<ElementPair> {
     }
 
     private int compareToFirst(ElementPair o) {
-        if(DataSort.config.isInteger){
+        if (DataSort.config.firstElementIsInteger) {
             return (Integer) this.element1 - (Integer) o.element1;
-        }else{
-            return ((String)this.element1).compareTo((String)o.getElement1());
+        } else {
+            return ((String) this.element1).compareTo((String) o.getElement1());
         }
     }
 
     private int compareToSecond(ElementPair o) {
-        if(DataSort.config.isInteger){
+        if (DataSort.config.secondElementIsInteger) {
             return (Integer) this.element2 - (Integer) o.element2;
-        }else{
-            return ((String)this.element2).compareTo((String)o.getElement2());
+        } else {
+            return ((String) this.element2).compareTo((String) o.getElement2());
         }
     }
 
     private int compareToBoth(ElementPair o) {
-         if(DataSort.config.isInteger){
-            int comp = (Integer)this.element1 - (Integer) o.element1;
-            if(comp == 0){
-                return (Integer) this.element2 - (Integer) o.element2; 
-            }
-            return comp;
-        }else{
-            int comp = ((String)this.element1).compareTo((String)o.getElement1());
-            if(comp == 0){
-                return ((String)this.element2).compareTo((String)o.getElement2()); 
-            }
-            return comp;
+        int comp = this.compareToFirst(o);
+        if (comp == 0) {
+            return this.compareToSecond(o);
         }
+        return comp;
     }
 
 }

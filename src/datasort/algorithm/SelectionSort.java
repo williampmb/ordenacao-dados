@@ -9,7 +9,7 @@ package datasort.algorithm;
  *
  * @author willi
  */
-public class SelectionSort implements Sort{
+public class SelectionSort extends Sort{
 
     @Override
     public <T extends Comparable<T>> T[] execute(T[] array) {
@@ -18,6 +18,8 @@ public class SelectionSort implements Sort{
             int posMin= i;
             //find the minimum element in unsorted part
             for(int j = i+1; j < array.length;j++){
+                //To make the alg stable, we must use just < instead of <= 
+                //otherwise it would change the equals elements 
                 if(array[j].compareTo(array[posMin])<0){
                     posMin = j;
                 }
@@ -25,19 +27,10 @@ public class SelectionSort implements Sort{
             //swap elements if the current posMin element is less than element[i]
             // and it is not the same element
             if(posMin != i){
-                T tmp = array[i];
-                array[i] = array[posMin];
-                array[posMin] = tmp;
+                swap(array, i, posMin);
             }
         }
         return array;
     }
-
-    @Override
-    public <T extends Comparable<T>> void print(T[] array) {
-        for(int i = 0 ; i < array.length; i++) System.out.print(array[i].toString() + " - ");
-    }
-
-  
     
 }

@@ -5,7 +5,9 @@
  */
 package datasort;
 
+import datasort.algorithm.InsertionSort;
 import datasort.algorithm.SelectionSort;
+import datasort.algorithm.Sort;
 import datasort.data.ElementPair;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -17,10 +19,10 @@ import java.io.IOException;
 public class DataSort {
 
     private static final String filePath = "src/datasort/data.txt";
-    private static final String orderBy = "FIRST";
+    //private static final String orderBy = "SECONa";
     public static final String splitTag = ",";
     public static Configuration config;
-    
+    //FIX
 
     /**
      * @param args the command line arguments
@@ -30,8 +32,10 @@ public class DataSort {
         ElementPair[] array = ElementPair.initializeArrayElementPairFromFile(filePath);
         
         config = Configuration.getInstance();
+        config.setElementsType(array[0]);
         
-        SelectionSort sort = new SelectionSort();
+        //Sort sort = new SelectionSort();
+        Sort sort = new InsertionSort();
         sort.print(array);
         System.out.println("");
         array = sort.execute(array);
