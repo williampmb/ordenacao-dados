@@ -5,10 +5,12 @@
  */
 package datasort;
 
+import datasort.algorithm.HeapSort;
 import datasort.algorithm.InsertionSort;
 import datasort.algorithm.SelectionSort;
 import datasort.algorithm.Sort;
 import datasort.data.ElementPair;
+import datasort.structure.MyHeap;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -34,8 +36,10 @@ public class DataSort {
         config = Configuration.getInstance();
         config.setElementsType(array[0]);
         
+        Sort sort = new HeapSort();
+        
         //Sort sort = new SelectionSort();
-        Sort sort = new InsertionSort();
+        //Sort sort = new InsertionSort();
         sort.print(array);
         System.out.println("");
         array = sort.execute(array);

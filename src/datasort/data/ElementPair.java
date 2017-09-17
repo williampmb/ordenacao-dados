@@ -21,7 +21,6 @@ import java.util.ArrayList;
 public class ElementPair implements Comparable<ElementPair> {
 
     Object element1, element2;
-    boolean isInteger;
 
     public Object getElement1() {
         return element1;
