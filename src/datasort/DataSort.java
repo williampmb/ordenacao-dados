@@ -7,6 +7,7 @@ package datasort;
 
 import datasort.algorithm.HeapSort;
 import datasort.algorithm.InsertionSort;
+import datasort.algorithm.MergeSort;
 import datasort.algorithm.SelectionSort;
 import datasort.algorithm.Sort;
 import datasort.data.ElementPair;
@@ -36,14 +37,15 @@ public class DataSort {
         config = Configuration.getInstance();
         config.setElementsType(array[0]);
         
-        Sort sort = new HeapSort();
+        //Sort sort = new HeapSort();
+        Sort sort = new MergeSort();
         
         //Sort sort = new SelectionSort();
         //Sort sort = new InsertionSort();
         sort.print(array);
         System.out.println("");
-        array = sort.execute(array);
-        sort.print(array);
+        ElementPair[] execute = sort.execute(array);
+        sort.print(execute);
 
     }
 
