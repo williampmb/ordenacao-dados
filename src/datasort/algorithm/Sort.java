@@ -14,9 +14,11 @@ public abstract class Sort {
     public abstract <T extends Comparable<T>> T[] execute(T[] array);
 
     public <T extends Comparable<T>> void print(T[] array) {
+        System.out.println("");
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i].toString() + " - ");
         }
+        System.out.println("");
     }
 
     public <T extends Comparable<T>> void swap(T[] array, int posObj1, int posObj2) {

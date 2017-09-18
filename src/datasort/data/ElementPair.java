@@ -55,12 +55,12 @@ public class ElementPair implements Comparable<ElementPair> {
         ArrayList<ElementPair> elements = new ArrayList<>();
 
         String line = br.readLine();
-        String[] tok = line.split(DataSort.splitTag);
+        String[] tok = line.split(DataSort.config.splitTag);
         Configuration config = Configuration.getInstance();
         config.setVariableType(tok[0], tok[1]);
       
         while (line != null && !line.equals("")) {
-            tok = line.split(DataSort.splitTag);
+            tok = line.split(DataSort.config.splitTag);
             ElementPair pair = new ElementPair(tok[0], tok[1]);
             elements.add(pair);
             line = br.readLine();
@@ -86,13 +86,13 @@ public class ElementPair implements Comparable<ElementPair> {
         }
     }
 
-    private boolean checkTypeFromObject(Object elementPair) {
-        if (elementPair instanceof Integer) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    private boolean checkTypeFromObject(Object elementPair) {
+//        if (elementPair instanceof Integer) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
     private int compareToFirst(ElementPair o) {
         if (DataSort.config.firstElementIsInteger) {
