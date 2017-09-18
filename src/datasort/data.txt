@@ -6,7 +6,8 @@
 2,ba
 15,c
 16,abacaxi
-16,jurema
-16,abacaxi
+8,jurema
+9,abacaxi
 20,monkey
 99,microsoft
+6,egg

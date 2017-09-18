@@ -37,8 +37,8 @@ public class DataSort {
         config = Configuration.getInstance();
         config.setElementsType(array[0]);
         
-        //Sort sort = new HeapSort();
-        Sort sort = new MergeSort();
+        Sort sort = new HeapSort();
+        //Sort sort = new MergeSort();
         
         //Sort sort = new SelectionSort();
         //Sort sort = new InsertionSort();

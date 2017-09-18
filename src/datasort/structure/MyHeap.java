@@ -21,7 +21,14 @@ public class MyHeap<T extends Comparable<T>> {
 
     MyHeap(int size) {
         heap = (T[]) new Comparable[size];
-        pos = 1; //começa com 1 para facilitar achar os filhos
+        pos = 0; //começa com 1 para facilitar achar os filhos
+        dnary = 2;
+        order = 2;
+    }
+
+    MyHeap(T[] array) {
+        heap = array;
+        pos = 0;
         dnary = 2;
         order = 2;
     }
@@ -31,7 +38,7 @@ public class MyHeap<T extends Comparable<T>> {
     }
 
     public static <T extends Comparable<T>> MyHeap buildHeapFromArray(T[] array) {
-        MyHeap myHeap = new MyHeap(array.length + 1);
+        MyHeap myHeap = new MyHeap(array);
         for (T element : array) {
             myHeap.insert(element);
         }
@@ -49,7 +56,7 @@ public class MyHeap<T extends Comparable<T>> {
     }
 
     private void createSpace() {
-        T[] newHeap = (T[]) new Object[heap.length + ((int) Math.pow(dnary, order))];
+        T[] newHeap = (T[]) new Comparable[heap.length + ((int) Math.pow(dnary, order))];
         order++;
         for (int i = 1; i < heap.length; i++) {
             newHeap[i] = heap[i];
@@ -58,11 +65,11 @@ public class MyHeap<T extends Comparable<T>> {
     }
 
     private void checkParentPriority(int currentPos) {
-        if (currentPos == 1) {
+        if (currentPos == 0) {
             return;
         }
 
-        int posParent = (currentPos + (dnary - 2)) / dnary;
+        int posParent = getParentPosition(currentPos);
         if (heap[currentPos].compareTo(heap[posParent]) < 0) {
             T tmp = heap[currentPos];
             heap[currentPos] = heap[posParent];
@@ -72,46 +79,57 @@ public class MyHeap<T extends Comparable<T>> {
     }
 
     public T min() {
-        if (pos == 1) {
+        if (pos == 0) {
             return null;
-        } else if (pos == 2) {
+        } else if (pos == 1) {
             return heap[--pos];
         }
 
-        T min = heap[1];
-        heap[1] = heap[--pos];
-        checkChildPriority(1);
+        T min = heap[0];
+        heap[0] = heap[--pos];
+        checkChildPriority(0);
 
         return min;
     }
 
     private void checkChildPriority(int currentPos) {
-        boolean end = false;
-        T min = heap[currentPos];
-        int posMin = currentPos;
-        for (int i = -(dnary - 2); i < 2; i++) {
-            if ((dnary * currentPos + i) == this.pos) {
-                end = true;
-            }
-            if ((dnary * currentPos + i) > this.pos) {
-                break;
-            }
-            if (min.compareTo(heap[dnary * currentPos + i]) > 0) {
-                min = heap[dnary * currentPos + i];
-                posMin = dnary * currentPos + i;
-            }
-        }
-        if (min == heap[currentPos]) {
+        int leftChild = getLeftChildPosition(currentPos);
+        int rightChild = getRightChildPosition(currentPos);
+        int smallerChild;
+        
+        if (hasChild(leftChild) && hasChild(rightChild)) {
+           smallerChild = (heap[leftChild].compareTo(heap[rightChild])<=0)? leftChild:rightChild;
+        }else if(hasChild(leftChild)){
+            smallerChild = leftChild;
+        }else{
             return;
         }
-        T tmp = heap[currentPos];
-        heap[currentPos] = min;
-        heap[posMin] = tmp;
-
-        if (end) {
-            return;
+        
+        if(heap[smallerChild].compareTo(heap[currentPos])<0){
+            swap(currentPos, smallerChild);
+            checkChildPriority(smallerChild);
         }
-        checkChildPriority(posMin);
     }
 
+    private int getParentPosition(int currentPos) {
+        return (currentPos - 1) / 2;
+    }
+
+    private int getLeftChildPosition(int currentPos) {
+        return 2 * currentPos + 1;
+    }
+
+    private int getRightChildPosition(int currentPos) {
+        return 2 * currentPos + 2;
+    }
+
+    private void swap(int currentPos, int leftChild) {
+        T tmp = heap[currentPos];
+        heap[currentPos] = heap[leftChild];
+        heap[leftChild] = tmp;
+    }
+
+    private boolean hasChild(int childPos) {
+        return childPos < pos;
+    }
 }

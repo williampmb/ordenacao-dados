@@ -24,4 +24,12 @@ public abstract class Sort {
         array[posObj1] = array[posObj2];
         array[posObj2] = tmp;
     }
+    
+    public <T extends Comparable<T>> void reverseArray(T[] array){
+        int size = array.length;
+        for(int i = 0 ; i < size/2;i++){
+            swap(array, i, size-1-i);
+        }
+        
+    }
 }
