@@ -130,6 +130,7 @@ public class DataSort {
                     break;
                 case 4:
                     setDebugMode(sc);
+                    break;
                 case 5:
                     exit = true;
                     break;

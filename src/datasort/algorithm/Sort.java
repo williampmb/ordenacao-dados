@@ -37,4 +37,15 @@ public abstract class Sort {
         }
 
     }
+    
+    public <T extends Comparable<T>> void printSubArray(T[] array, int start, int end) {
+        System.out.println("");
+        System.out.print("| ");
+        for (int i = start; i < end+1; i++) {
+            System.out.print(array[i].toString());
+            System.out.print(" | ");
+
+        }
+        System.out.println("");
+    }
 }

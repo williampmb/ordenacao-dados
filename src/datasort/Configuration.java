@@ -19,7 +19,7 @@ import javax.management.InvalidAttributeValueException;
  */
 public class Configuration {
 
-    public OrderBy orderBy = OrderBy.BOTH; // configurar a ordenação dos dados
+    public OrderBy orderBy = OrderBy.FIRST; // configurar a ordenação dos dados
     public boolean firstElementIsInteger = false; // configurar se os dados serão inteiros ou strings
     public boolean secondElementIsInteger = false; // configurar se os dados serão inteiros ou strings
     private static Configuration config;
