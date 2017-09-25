@@ -14,7 +14,7 @@ public abstract class Sort {
     public abstract <T extends Comparable<T>> T[] execute(T[] array);
 
     public <T extends Comparable<T>> void print(T[] array) {
-        System.out.println("");
+        //System.out.println("");
         System.out.print("| ");
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i].toString());
@@ -39,7 +39,7 @@ public abstract class Sort {
     }
     
     public <T extends Comparable<T>> void printSubArray(T[] array, int start, int end) {
-        System.out.println("");
+        //System.out.println("");
         System.out.print("| ");
         for (int i = start; i < end+1; i++) {
             System.out.print(array[i].toString());

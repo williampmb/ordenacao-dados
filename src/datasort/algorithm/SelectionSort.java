@@ -6,7 +6,6 @@
 package datasort.algorithm;
 
 import datasort.Configuration;
-import datasort.structure.MyHeap;
 
 /**
  *

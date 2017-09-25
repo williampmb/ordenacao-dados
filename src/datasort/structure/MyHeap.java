@@ -5,8 +5,6 @@
  */
 package datasort.structure;
 
-import datasort.data.ElementPair;
-
 /**
  *
  * @author willi
