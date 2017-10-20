@@ -5,6 +5,7 @@
  */
 package datasort;
 
+import datasort.algorithm.BubbleSort;
 import datasort.algorithm.HeapSort;
 import datasort.algorithm.InsertionSort;
 import datasort.algorithm.MergeSort;
@@ -116,6 +117,9 @@ public class Configuration {
                 break;
             case 4:
                 sort = new MergeSort();
+                break;
+            case 5:
+                sort = new BubbleSort();
                 break;
             default:
                 System.out.println("Opcao nao reconhecida. Por padrao, foi setado Insertion Sort");

@@ -170,6 +170,7 @@ public class DataSort {
         System.out.println("2 - SelectionSort");
         System.out.println("3 - HeapSort");
         System.out.println("4 - MergeSort");
+        System.out.println("5 - BubbleSort");
         System.out.println("---------------------------------------------------");
     }
 
@@ -191,13 +192,13 @@ public class DataSort {
             boolean checkIfInteger = config.checkIfInteger(orderNameStr);
             if (checkIfInteger) {
                 int option = Integer.parseInt(orderNameStr);
-                if (option > 0 && option < 5) {
+                if (option > 0 && option < 6) {
                     config.setSortType(option);
                     break;
                 }
             }
             System.out.println("");
-            System.out.println("Opcao Invalida. Digite 1,2,3 ou 4");
+            System.out.println("Opcao Invalida. Digite 1,2,3,4 ou 5");
             System.out.println("");
             printOrderName();
         }
