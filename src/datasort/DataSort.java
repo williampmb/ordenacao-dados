@@ -75,7 +75,7 @@ public class DataSort {
             createEmptySpaceOnConsole(2);
 
             System.out.println("----------------------");
-            if(!config.debugModeOn){
+            if (!config.debugModeOn) {
                 System.out.println("Modo de Debugacao OFF");
             }
             ElementPair[] execute = sort.execute(array);
@@ -171,6 +171,8 @@ public class DataSort {
         System.out.println("3 - HeapSort");
         System.out.println("4 - MergeSort");
         System.out.println("5 - BubbleSort");
+        System.out.println("6 - ShellSort");
+        System.out.println("7 - QuickSort");
         System.out.println("---------------------------------------------------");
     }
 
@@ -192,13 +194,13 @@ public class DataSort {
             boolean checkIfInteger = config.checkIfInteger(orderNameStr);
             if (checkIfInteger) {
                 int option = Integer.parseInt(orderNameStr);
-                if (option > 0 && option < 6) {
+                if (option > 0 && option < 8) {
                     config.setSortType(option);
                     break;
                 }
             }
             System.out.println("");
-            System.out.println("Opcao Invalida. Digite 1,2,3,4 ou 5");
+            System.out.println("Opcao Invalida. Digite 1,2,3,4,5,6 ou 7");
             System.out.println("");
             printOrderName();
         }

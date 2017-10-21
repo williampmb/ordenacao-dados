@@ -10,6 +10,7 @@ import datasort.algorithm.HeapSort;
 import datasort.algorithm.InsertionSort;
 import datasort.algorithm.MergeSort;
 import datasort.algorithm.SelectionSort;
+import datasort.algorithm.ShellSort;
 import datasort.algorithm.Sort;
 import datasort.data.ElementPair;
 import javax.management.InvalidAttributeValueException;
@@ -120,6 +121,9 @@ public class Configuration {
                 break;
             case 5:
                 sort = new BubbleSort();
+                break;
+            case 6:
+                sort = new ShellSort();
                 break;
             default:
                 System.out.println("Opcao nao reconhecida. Por padrao, foi setado Insertion Sort");
