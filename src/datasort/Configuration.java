@@ -9,6 +9,7 @@ import datasort.algorithm.BubbleSort;
 import datasort.algorithm.HeapSort;
 import datasort.algorithm.InsertionSort;
 import datasort.algorithm.MergeSort;
+import datasort.algorithm.QuickSort;
 import datasort.algorithm.SelectionSort;
 import datasort.algorithm.ShellSort;
 import datasort.algorithm.Sort;
@@ -124,6 +125,9 @@ public class Configuration {
                 break;
             case 6:
                 sort = new ShellSort();
+                break;
+            case 7:
+                sort = new QuickSort();
                 break;
             default:
                 System.out.println("Opcao nao reconhecida. Por padrao, foi setado Insertion Sort");
