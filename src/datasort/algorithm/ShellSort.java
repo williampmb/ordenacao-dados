@@ -23,7 +23,7 @@ public class ShellSort extends Sort {
             int size = array.length;
             for (int gap = size / 2; gap > 0; gap /= 2) {
                 for (int i = gap; i < size; i++) {
-                    for (int j = i; j - gap >= 0 && array[j].compareTo(array[j - gap]) > 0; j -= gap) {
+                    for (int j = i; j - gap >= 0 && array[j].compareTo(array[j - gap]) < 0; j -= gap) {
                         T tmp = array[j];
                         array[j] = array[j - gap];
                         array[j - gap] = tmp;
